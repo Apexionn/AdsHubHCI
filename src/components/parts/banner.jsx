@@ -15,7 +15,7 @@ export default function Banner() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }));
 
   return (
-    <div className="flex justify-center mt-5">
+    <div className="hidden md:flex justify-center mt-5">
       <Carousel
         plugins={[plugin.current]}
         className="max-w-[80%]"

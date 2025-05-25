@@ -17,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           <Route element={<Shell />}>
+          
             <Route path="/" element={<Landing />} />
 
             <Route path="/:category" element={<SubCategory />} />

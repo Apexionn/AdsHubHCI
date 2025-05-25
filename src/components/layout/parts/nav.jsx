@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { ThemeToggle } from "../../../state/theme/toggle";
+import Notification from "./notification";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,12 +11,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button";
 import { MdFavoriteBorder } from "react-icons/md";
 import { IoIosNotificationsOutline, IoIosSearch } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 import { RxHamburgerMenu } from "react-icons/rx";
-import logo from "@/assets/adshub-logo.png";
+import logo from "@/assets/adshub-logo2.png";
 
 export default function Navbar({ children }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -110,30 +124,39 @@ export default function Navbar({ children }) {
               )}
 
               {/* Always visible */}
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Favorites"
-                className="h-10 w-10"
-              >
-                <MdFavoriteBorder className="w-5 h-5 sm:w-6 sm:h-6" />
-              </Button>
+              <NavLink to ="/favorite">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label="Favorites"
+                  className="h-10 w-10"
+                >
+                  <MdFavoriteBorder className="w-5 h-5 sm:w-6 sm:h-6" />
+                </Button>
+              </NavLink>
 
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Notifications"
-                className="h-10 w-10"
-              >
-                <IoIosNotificationsOutline className="w-5 h-5 sm:w-6 sm:h-6" />
-              </Button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    aria-label="Notifications"
+                    className="h-10 w-10"
+                  >
+                    <IoIosNotificationsOutline className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <Notification />
+                </PopoverContent>
+              </Popover>
 
               <ThemeToggle />
 
               {/* Only visible on desktop */}
               {!isMobile && (
                 <Button variant="theme" size={isTablet ? "default" : "lg"}>
-                  Jual
+                  Iklan
                 </Button>
               )}
 
@@ -142,12 +165,36 @@ export default function Navbar({ children }) {
                 {!isMobile && (
                   <span className="text-sm sm:text-base">Halo, puput</span>
                 )}
-                <Avatar className="h-8 w-8 sm:h-10 sm:w-10">
-                  <AvatarImage src="https://github.com/shadcn.png" alt="User" />
-                  <AvatarFallback className="bg-primary/10 text-primary">
-                    PU
-                  </AvatarFallback>
-                </Avatar>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-gray-200">
+                      <img
+                        src="https://github.com/shadcn.png"
+                        alt="User"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                      <NavLink to="/profile">
+                        Profile
+                      </NavLink>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <NavLink to="/personal">
+                        Iklan pribadi
+                      </NavLink>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <NavLink to="/login">
+                        Sign in
+                      </NavLink>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>
@@ -185,19 +232,29 @@ export default function Navbar({ children }) {
 
             {/* Mobile nav links */}
             <nav className="flex flex-col gap-3">
-              <Button variant="ghost" className="justify-start h-12 text-base">
-                <MdFavoriteBorder className="mr-3 h-5 w-5" />
-                Favorit
-              </Button>
-              <Button variant="ghost" className="justify-start h-12 text-base">
-                <IoIosNotificationsOutline className="mr-3 h-5 w-5" />
-                Notifikasi
-              </Button>
+              <NavLink to="/favorite">
+                <Button variant="ghost" className="justify-start h-12 text-base">
+                  <MdFavoriteBorder className="mr-3 h-5 w-5" />
+                  Favorit
+                </Button>
+              </NavLink>
+
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="ghost" className="justify-start h-12 text-base">
+                    <IoIosNotificationsOutline className="mr-3 h-5 w-5" />
+                    Notifikasi
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <Notification />
+                </PopoverContent>
+              </Popover>
               <Button
                 variant="theme"
                 className="justify-start"
               >
-                Jual
+                Iklan
               </Button>
             </nav>
           </div>

@@ -102,7 +102,7 @@ export default function ProductDetail() {
   return (
     <div className="max-w-5xl mx-auto mt-5">
       <div className="p-4">
-        <div className="bg-white rounded-lg shadow-md overflow-hidden mb-4">
+        <div className="bg-primary-foreground rounded-lg shadow-md overflow-hidden mb-4">
           {/* Main Product Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Image Gallery Section */}
@@ -147,7 +147,7 @@ export default function ProductDetail() {
               {/* Product Info */}
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h2 className="text-2xl font-bold">{selectedItem.name}</h2>
+                  <h2 className="text-[var(--textbase)] text-2xl font-bold">{selectedItem.name}</h2>
                   <p className="text-xl font-semibold text-lime-500 mt-2">
                     {formatPrice(selectedItem.price)}
                   </p>
@@ -157,8 +157,8 @@ export default function ProductDetail() {
                     onClick={() => setIsFavorite(!isFavorite)}
                     className={`p-2 rounded-full transition-colors ${
                       isFavorite
-                        ? "text-red-500 bg-red-50"
-                        : "text-gray-400 hover:text-red-500 bg-gray-50 hover:bg-red-50"
+                        ? "text-red-500 bg-background"
+                        : "text-gray-400 hover:text-red-500 bg-background"
                     }`}
                     aria-label="Add to favorites"
                   >
@@ -168,7 +168,7 @@ export default function ProductDetail() {
                     />
                   </button>
                   <button
-                    className="p-2 rounded-full text-gray-400 hover:text-blue-500 bg-gray-50 hover:bg-blue-50 transition-colors"
+                    className="p-2 rounded-full text-gray-400 hover:text-blue-500 bg-background transition-colors"
                     aria-label="Share"
                   >
                     <Share2 size={20} />
@@ -185,11 +185,11 @@ export default function ProductDetail() {
 
               {/* Description */}
               <div className="mb-6">
-                <p className="text-gray-700">{selectedItem.description}</p>
+                <p className="text-[var(--textbase)]">{selectedItem.description}</p>
               </div>
 
               {/* Seller Info */}
-              <div className="bg-gray-50 rounded-lg p-3 mb-4">
+              <div className="bg-background rounded-lg p-3 mb-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     <div className="bg-blue-100 text-blue-700 p-2 rounded-full">
@@ -223,10 +223,10 @@ export default function ProductDetail() {
         </div>
 
         {/* Location Map Section */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-primary-foreground rounded-lg shadow-md overflow-hidden">
           <div className="p-4">
             {/* Google Maps iframe */}
-            <div className="rounded-lg overflow-hidden border border-gray-200">
+            <div className="rounded-lg overflow-hidden border">
               <div className="relative w-full h-64">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7931.105407735822!2d106.66564359330442!3d-6.322328993030627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e4dee0480b01%3A0xc27f6967c3c4c40a!2sCosta%20Rica%20De%20Latinos%20-%20BSD%20City!5e0!3m2!1sid!2sid!4v1746816334402!5m2!1sid!2sid"
@@ -241,7 +241,7 @@ export default function ProductDetail() {
               </div>
 
               {/* Map Controls */}
-              <div className="bg-white p-3 border-t border-gray-200 flex justify-between items-center">
+              <div className="bg-background p-3 border-t flex justify-between items-center">
                 <div className="flex items-center space-x-1">
                   <MapPin size={15} className="text-slate-800" />
                   <span className="ml-1">{selectedItem.location}</span>

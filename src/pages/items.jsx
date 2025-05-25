@@ -49,7 +49,7 @@ export default function Items() {
     <div className="max-w-[80%] container mx-auto px-4 py-8">
       <h2 className="text-2xl font-bold mb-6">{subcategoryData.sub_title}</h2>
       {/* filter selection */}
-      <div className="w-40 xl:w-80">
+      <div className="w-50 xl:w-80">
         <Select>
           <SelectTrigger className="w-full bg-muted/40 h-10 text-sm sm:text-base">
             <div className="flex items-center gap-1 sm:gap-2">
